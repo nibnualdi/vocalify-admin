@@ -1,3 +1,4 @@
 import ErrorPage from "./ErrorPage";
+import Profile from "./Profile";
 
-export { ErrorPage };
+export { ErrorPage, Profile };

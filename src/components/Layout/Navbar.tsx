@@ -9,18 +9,40 @@ import {
   Text,
   Menu,
   MenuButton,
-  MenuDivider,
   MenuItem,
   MenuList,
   FlexProps,
 } from "@chakra-ui/react";
 import { FiMenu, FiChevronDown } from "react-icons/fi";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
 }
 
+interface MenuItems {
+  name: string;
+  onClick: () => void;
+}
+
 const Navbar = ({ onOpen, ...rest }: MobileProps) => {
+  const navigate: NavigateFunction = useNavigate();
+
+  const MenuItemList: MenuItems[] = [
+    {
+      name: "Profile",
+      onClick: () => {
+        navigate("/profile");
+      },
+    },
+    {
+      name: "Sign out",
+      onClick: () => {
+        navigate("/");
+      },
+    },
+  ];
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -81,11 +103,9 @@ const Navbar = ({ onOpen, ...rest }: MobileProps) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
-              <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              {MenuItemList.map(({ name, onClick }) => (
+                <MenuItem key={name} onClick={onClick}>{name}</MenuItem>
+              ))}
             </MenuList>
           </Menu>
         </Flex>
