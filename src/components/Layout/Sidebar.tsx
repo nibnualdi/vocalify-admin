@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Box,
   CloseButton,
@@ -15,6 +16,7 @@ import NavItem from "./NavItem";
 interface LinkItemProps {
   name: string;
   icon: IconType;
+  to: string;
 }
 
 interface SidebarContentProps extends BoxProps {
@@ -27,14 +29,16 @@ interface SidebarProps {
 }
 
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Home", icon: FiHome },
-  { name: "Trending", icon: FiTrendingUp },
-  { name: "Explore", icon: FiCompass },
-  { name: "Favourites", icon: FiStar },
-  { name: "Settings", icon: FiSettings },
+  { name: "Dashboard", icon: FiHome, to: "/" },
+  { name: "Trending", icon: FiTrendingUp, to: "/" },
+  { name: "Explore", icon: FiCompass, to: "/" },
+  { name: "Favourites", icon: FiStar, to: "/" },
+  { name: "Settings", icon: FiSettings, to: "/" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
+  const [selectedNav, setSelectedNav] = useState<string>("Dashboard");
+
   return (
     <Box
       transition="3s ease"
@@ -53,7 +57,14 @@ const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem
+          key={link.name}
+          icon={link.icon}
+          to={link.to}
+          name={link.name}
+          selectedNav={selectedNav}
+          setSelectedNav={setSelectedNav}
+        >
           {link.name}
         </NavItem>
       ))}
