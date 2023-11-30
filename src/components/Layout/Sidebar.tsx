@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Box,
   CloseButton,
@@ -32,14 +31,12 @@ interface SidebarProps {
 const LinkItems: Array<LinkItemProps> = [
   { name: "Dashboard", icon: FiHome, to: "/" },
   { name: "Songs", icon: IoMusicalNoteOutline, to: "/songs" },
-  { name: "Explore", icon: FiCompass, to: "/" },
-  { name: "Favourites", icon: FiStar, to: "/" },
-  { name: "Settings", icon: FiSettings, to: "/" },
+  { name: "Explore", icon: FiCompass, to: "/none" },
+  { name: "Favourites", icon: FiStar, to: "/none" },
+  { name: "Settings", icon: FiSettings, to: "/none" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
-  const [selectedNav, setSelectedNav] = useState<string>("Dashboard");
-
   return (
     <Box
       transition="3s ease"
@@ -58,14 +55,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem
-          key={link.name}
-          icon={link.icon}
-          to={link.to}
-          name={link.name}
-          selectedNav={selectedNav}
-          setSelectedNav={setSelectedNav}
-        >
+        <NavItem key={link.name} icon={link.icon} to={link.to}>
           {link.name}
         </NavItem>
       ))}

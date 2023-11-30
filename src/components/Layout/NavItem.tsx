@@ -6,36 +6,25 @@ interface NavItemProps extends FlexProps {
   icon: IconType;
   children: React.ReactNode;
   to: string;
-  name: string;
-  selectedNav: string;
-  setSelectedNav: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const NavItem = ({
-  icon,
-  children,
-  to,
-  name,
-  selectedNav,
-  setSelectedNav,
-  ...rest
-}: NavItemProps) => {
+const NavItem = ({ icon, children, to, ...rest }: NavItemProps) => {
   const navigate = useNavigate();
 
-  const onClick = ({ to, name }: { to: string; name: string }) => {
+  const onClick = ({ to }: { to: string }) => {
     navigate(to);
-    setSelectedNav(name);
   };
+  const path = location.pathname;
 
   return (
     <Box
       as="a"
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
-      onClick={() => onClick({ to, name })}
+      onClick={() => onClick({ to })}
     >
       <Flex
-        bg={selectedNav === name ? "cyan.400" : "transparent"}
+        bg={to === path ? "cyan.400" : "transparent"}
         align="center"
         p="4"
         mx="4"
