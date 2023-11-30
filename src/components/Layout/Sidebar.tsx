@@ -8,7 +8,7 @@ import {
   DrawerContent,
   BoxProps,
 } from "@chakra-ui/react";
-import { FiHome, FiStar, FiSettings } from "react-icons/fi";
+import { FiHome } from "react-icons/fi";
 import { IoMusicalNoteOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import { IconType } from "react-icons";
@@ -33,8 +33,6 @@ const LinkItems: Array<LinkItemProps> = [
   { name: "Dashboard", icon: FiHome, to: "/" },
   { name: "Songs", icon: IoMusicalNoteOutline, to: "/songs" },
   { name: "Artists", icon: BsPerson, to: "/artists" },
-  { name: "Favourites", icon: FiStar, to: "/none" },
-  { name: "Settings", icon: FiSettings, to: "/none" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }: SidebarContentProps) => {
