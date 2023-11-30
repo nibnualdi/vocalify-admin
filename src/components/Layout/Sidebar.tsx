@@ -9,7 +9,8 @@ import {
   DrawerContent,
   BoxProps,
 } from "@chakra-ui/react";
-import { FiHome, FiTrendingUp, FiCompass, FiStar, FiSettings } from "react-icons/fi";
+import { FiHome, FiCompass, FiStar, FiSettings } from "react-icons/fi";
+import { IoMusicalNoteOutline } from "react-icons/io5";
 import { IconType } from "react-icons";
 import NavItem from "./NavItem";
 
@@ -30,7 +31,7 @@ interface SidebarProps {
 
 const LinkItems: Array<LinkItemProps> = [
   { name: "Dashboard", icon: FiHome, to: "/" },
-  { name: "Trending", icon: FiTrendingUp, to: "/" },
+  { name: "Songs", icon: IoMusicalNoteOutline, to: "/songs" },
   { name: "Explore", icon: FiCompass, to: "/" },
   { name: "Favourites", icon: FiStar, to: "/" },
   { name: "Settings", icon: FiSettings, to: "/" },
