@@ -8,7 +8,7 @@ import {
   DrawerContent,
   BoxProps,
 } from "@chakra-ui/react";
-import { FiHome, FiCompass, FiStar, FiSettings } from "react-icons/fi";
+import { FiHome, FiStar, FiSettings } from "react-icons/fi";
 import { IoMusicalNoteOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import { IconType } from "react-icons";
