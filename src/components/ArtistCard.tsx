@@ -1,14 +1,18 @@
 import { Box, Center, useColorModeValue, Heading, Text, Stack, Image } from "@chakra-ui/react";
 
 import { CenterProps } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 interface ArtistCardProps extends CenterProps {
+  id: string;
   name: string;
   imageUrl: string;
   numberOfSOngs: number;
 }
 
-const ArtistCard = ({ name, imageUrl, numberOfSOngs, ...rest }: ArtistCardProps) => {
+const ArtistCard = ({ id, name, imageUrl, numberOfSOngs, ...rest }: ArtistCardProps) => {
+  const navigate = useNavigate();
+
   return (
     <Center
       py={12}
@@ -19,6 +23,7 @@ const ArtistCard = ({ name, imageUrl, numberOfSOngs, ...rest }: ArtistCardProps)
         transitionTimingFunction: "ease-in",
       }}
       {...rest}
+      onClick={() => navigate(`/artist/${id}`)}
     >
       <Box
         role={"group"}

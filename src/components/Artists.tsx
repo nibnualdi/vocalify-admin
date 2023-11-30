@@ -18,10 +18,10 @@ const Artists = () => {
         Artists
       </Text>
       <Flex flexWrap={"wrap"} justifyContent={"center"} gap={10}>
-        <ArtistCard name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
-        <ArtistCard name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
-        <ArtistCard name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
-        <ArtistCard name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
+        <ArtistCard id="1" name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
+        <ArtistCard id="1" name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
+        <ArtistCard id="1" name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
+        <ArtistCard id="1" name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
       </Flex>
     </Box>
   );
