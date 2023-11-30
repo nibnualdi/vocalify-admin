@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SidebarWithHeader from "./components/Layout";
-import { Dashboard, ErrorPage, Profile, SongsPage } from "./pages";
+import { ArtistsPage, Dashboard, ErrorPage, Profile, SongsPage } from "./pages";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +13,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Dashboard /> },
       { path: "/songs", element: <SongsPage /> },
+      { path: "/artists", element: <ArtistsPage /> },
     ],
   },
   {

@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { FiHome, FiCompass, FiStar, FiSettings } from "react-icons/fi";
 import { IoMusicalNoteOutline } from "react-icons/io5";
+import { BsPerson } from "react-icons/bs";
 import { IconType } from "react-icons";
 import NavItem from "./NavItem";
 
@@ -31,7 +32,7 @@ interface SidebarProps {
 const LinkItems: Array<LinkItemProps> = [
   { name: "Dashboard", icon: FiHome, to: "/" },
   { name: "Songs", icon: IoMusicalNoteOutline, to: "/songs" },
-  { name: "Explore", icon: FiCompass, to: "/none" },
+  { name: "Artists", icon: BsPerson, to: "/artists" },
   { name: "Favourites", icon: FiStar, to: "/none" },
   { name: "Settings", icon: FiSettings, to: "/none" },
 ];

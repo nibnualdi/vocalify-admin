@@ -10,7 +10,16 @@ interface ArtistCardProps extends CenterProps {
 
 const ArtistCard = ({ name, imageUrl, numberOfSOngs, ...rest }: ArtistCardProps) => {
   return (
-    <Center py={12} {...rest}>
+    <Center
+      py={12}
+      cursor={"pointer"}
+      _hover={{
+        transform: "scale(1.05)",
+        transitionDuration: "0.2s",
+        transitionTimingFunction: "ease-in",
+      }}
+      {...rest}
+    >
       <Box
         role={"group"}
         p={6}
