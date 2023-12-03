@@ -4,6 +4,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SidebarWithHeader from "./components/Layout";
 import { ArtistDetail, ArtistsPage, Dashboard, ErrorPage, Profile, SongsPage } from "./pages";
+import { store } from "./redux/store";
+import { Provider } from 'react-redux'
 
 const router = createBrowserRouter([
   {
@@ -25,8 +27,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ChakraProvider>
-      <RouterProvider router={router} />
-    </ChakraProvider>
+    <Provider store={store}>
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
+    </Provider>
   </React.StrictMode>
 );

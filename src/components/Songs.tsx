@@ -1,10 +1,11 @@
 import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
-import { SongCard } from ".";
-
-const IMAGE =
-  "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80";
+import { Error, SongCard, Loading } from ".";
+import { useGetSongsQuery } from "../redux/services/song";
 
 const Songs = () => {
+  const { data, isLoading, isError } = useGetSongsQuery("");
+
+  if (isError) return <Error />;
   return (
     <Box
       px={{ base: 2, md: 4 }}
@@ -18,12 +19,20 @@ const Songs = () => {
       <Text fontWeight={"medium"} isTruncated>
         Songs
       </Text>
-      <Flex flexDirection={"column"} alignItems={"center"} gap={5} mt={10}>
-        <SongCard title="Once upon a time" imageUrl={IMAGE} artistName="10" />
-        <SongCard title="Once upon a time" imageUrl={IMAGE} artistName="10" />
-        <SongCard title="Once upon a time" imageUrl={IMAGE} artistName="10" />
-        <SongCard title="Once upon a time" imageUrl={IMAGE} artistName="10" />
-      </Flex>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Flex flexDirection={"column"} alignItems={"center"} gap={5} mt={10}>
+          {data?.map((e) => (
+            <SongCard
+              title={e.title}
+              imageUrl={e.image_url}
+              artistName={e.artist_name}
+              key={e.id}
+            />
+          ))}
+        </Flex>
+      )}
     </Box>
   );
 };
