@@ -21,7 +21,7 @@ export const songsApi = createApi({
     },
   }),
   endpoints: (build) => ({
-    getSongs: build.query<Song[], any>({
+    getSongs: build.query<Song[], void>({
       query: () => `songs`,
       transformResponse: (rawResult: { songs: Song[] }) => {
         return rawResult.songs;

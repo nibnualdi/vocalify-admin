@@ -3,7 +3,7 @@ import { Error, SongCard, Loading } from ".";
 import { useGetSongsQuery } from "../redux/services/song";
 
 const Songs = () => {
-  const { data, isLoading, isError } = useGetSongsQuery("");
+  const { data, isLoading, isError } = useGetSongsQuery();
 
   if (isError) return <Error />;
   return (
