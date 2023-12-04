@@ -1,10 +1,11 @@
 import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
-import { ArtistCard } from ".";
-
-const IMAGE =
-  "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80";
+import { ArtistCard, Error, Loading } from ".";
+import { useGetArtistsQuery } from "../redux/services/song";
 
 const Artists = () => {
+  const { data, isLoading, isError } = useGetArtistsQuery();
+
+  if (isError) return <Error />;
   return (
     <Box
       px={{ base: 2, md: 4 }}
@@ -17,12 +18,21 @@ const Artists = () => {
       <Text fontWeight={"medium"} isTruncated>
         Artists
       </Text>
-      <Flex flexWrap={"wrap"} justifyContent={"center"} gap={10}>
-        <ArtistCard id="1" name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
-        <ArtistCard id="1" name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
-        <ArtistCard id="1" name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
-        <ArtistCard id="1" name="Pink" imageUrl={IMAGE} numberOfSOngs={10} />
-      </Flex>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Flex flexWrap={"wrap"} justifyContent={"center"} gap={10}>
+          {data?.map((e) => (
+            <ArtistCard
+              id={e.id}
+              name={e.name}
+              imageUrl={e.image_url}
+              numberOfSOngs={e.number_of_songs}
+              key={e.id}
+            />
+          ))}
+        </Flex>
+      )}
     </Box>
   );
 };

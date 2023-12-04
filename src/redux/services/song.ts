@@ -12,6 +12,13 @@ interface Song {
   title: string;
 }
 
+interface Artist {
+  id: string;
+  image_url: string;
+  name: string;
+  number_of_songs: number;
+}
+
 export const songsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API_URL,
@@ -27,7 +34,13 @@ export const songsApi = createApi({
         return rawResult.songs;
       },
     }),
+    getArtists: build.query<Artist[], void>({
+      query: () => `artists`,
+      transformResponse: (rawResult: { artists: Artist[] }) => {
+        return rawResult.artists;
+      },
+    }),
   }),
 });
 
-export const { useGetSongsQuery } = songsApi;
+export const { useGetSongsQuery, useGetArtistsQuery } = songsApi;
