@@ -11,10 +11,11 @@ import { ReactNode } from "react";
 import { BsPerson } from "react-icons/bs";
 import { IoMusicalNoteOutline } from "react-icons/io5";
 import { Artists, Songs } from "../components";
+import { useGetArtistsQuery, useGetSongsQuery } from "../redux/services/song";
 
 interface StatsCardProps {
   title: string;
-  stat: string;
+  stat: number;
   icon: ReactNode;
 }
 
@@ -47,6 +48,9 @@ function StatsCard(props: StatsCardProps) {
 }
 
 const Dashboard = () => {
+  const { data: artists } = useGetArtistsQuery();
+  const { data: songs } = useGetSongsQuery();
+
   return (
     <Flex
       maxW="7xl"
@@ -57,8 +61,12 @@ const Dashboard = () => {
       gap={10}
     >
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, lg: 8 }}>
-        <StatsCard title={"Songs"} stat={"5,000"} icon={<IoMusicalNoteOutline size={"3em"} />} />
-        <StatsCard title={"Artists"} stat={"7"} icon={<BsPerson size={"3em"} />} />
+        <StatsCard
+          title={"Songs"}
+          stat={songs?.length || 0}
+          icon={<IoMusicalNoteOutline size={"3em"} />}
+        />
+        <StatsCard title={"Artists"} stat={artists?.length || 0} icon={<BsPerson size={"3em"} />} />
       </SimpleGrid>
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
