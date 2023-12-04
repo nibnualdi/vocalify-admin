@@ -40,7 +40,24 @@ export const songsApi = createApi({
         return rawResult.artists;
       },
     }),
+    getArtistById: build.query<Artist, string>({
+      query: (id) => `artist/${id}`,
+      transformResponse: (rawResult: { artists: Artist[] }) => {
+        return rawResult.artists[0];
+      },
+    }),
+    getSongsByArtistName: build.query<Song[], string>({
+      query: (name) => `songs/artist/${name}`,
+      transformResponse: (rawResult: { songs: Song[] }) => {
+        return rawResult.songs
+      }
+    }),
   }),
 });
 
-export const { useGetSongsQuery, useGetArtistsQuery } = songsApi;
+export const {
+  useGetSongsQuery,
+  useGetArtistsQuery,
+  useGetArtistByIdQuery,
+  useGetSongsByArtistNameQuery,
+} = songsApi;
