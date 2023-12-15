@@ -49,8 +49,18 @@ export const songsApi = createApi({
     getSongsByArtistName: build.query<Song[], string>({
       query: (name) => `songs/artist/${name}`,
       transformResponse: (rawResult: { songs: Song[] }) => {
-        return rawResult.songs
-      }
+        return rawResult.songs;
+      },
+    }),
+    createArtists: build.mutation<Artist[], Partial<Artist>>({
+      query: ({ name, image_url }) => ({
+        url: `create/artist`,
+        method: "POST",
+        body: {
+          name,
+          image_url,
+        },
+      }),
     }),
   }),
 });
@@ -60,4 +70,5 @@ export const {
   useGetArtistsQuery,
   useGetArtistByIdQuery,
   useGetSongsByArtistNameQuery,
+  useCreateArtistsMutation,
 } = songsApi;
