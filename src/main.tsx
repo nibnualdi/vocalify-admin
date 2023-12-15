@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SidebarWithHeader from "./components/Layout";
-import { ArtistDetail, ArtistsPage, Dashboard, ErrorPage, Profile, SongsPage } from "./pages";
+import { AddANewSong, ArtistDetail, ArtistsPage, Dashboard, ErrorPage, Profile, SongsPage } from "./pages";
 import { store } from "./redux/store";
 import { Provider } from 'react-redux'
 
@@ -17,6 +17,7 @@ const router = createBrowserRouter([
       { path: "/songs", element: <SongsPage /> },
       { path: "/artists", element: <ArtistsPage /> },
       { path: "/artist/:id", element: <ArtistDetail /> },
+      { path: "/songs/new", element: <AddANewSong /> },
     ],
   },
   {
