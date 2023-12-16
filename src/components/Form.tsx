@@ -25,6 +25,7 @@ import { useToast } from "@chakra-ui/react";
 import { InputAutoComplete } from ".";
 import { useCreateArtistsMutation, useGetArtistsQuery } from "../redux/services/song";
 import { uploadFile } from "../utils";
+import { Artist } from "../types";
 
 interface InputFileProps {
   labelName: string;
@@ -61,13 +62,6 @@ const InputFile = ({ labelName, buttonName, onChange }: InputFileProps) => {
     </>
   );
 };
-
-interface Artist {
-  id: string;
-  image_url: string;
-  name: string;
-  number_of_songs: number;
-}
 
 interface ArtistFormProps extends BoxProps {
   artists?: Artist[];
