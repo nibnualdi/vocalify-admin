@@ -16,104 +16,12 @@ import {
   useColorModeValue,
   Progress,
   Text,
-  Image,
-  BoxProps,
+  useToast,
 } from "@chakra-ui/react";
-import {} from "@chakra-ui/react";
 
-import { useToast } from "@chakra-ui/react";
-import { InputAutoComplete } from ".";
+import { ArtistForm } from ".";
 import { useCreateArtistsMutation, useGetArtistsQuery } from "../redux/services/song";
-import { uploadFile } from "../utils";
-import { Artist } from "../types";
 
-interface InputFileProps {
-  labelName: string;
-  buttonName: string;
-  onChange: (file: File) => Promise<void>;
-}
-
-const InputFile = ({ labelName, buttonName, onChange }: InputFileProps) => {
-  return (
-    <>
-      <FormLabel>
-        <Text fontWeight={"medium"} isTruncated>
-          {labelName}
-        </Text>
-      </FormLabel>
-      <label style={{ position: "relative", cursor: "pointer" }}>
-        {true ? (
-          <Button variant="outline" colorScheme="yellow" position={"absolute"}>
-            {buttonName}
-          </Button>
-        ) : (
-          <Image />
-        )}
-        <Input
-          type="file"
-          placeholder="First name"
-          opacity={0}
-          id="photo"
-          onChange={(e) => {
-            e.target.files && onChange(e.target.files[0]);
-          }}
-        />
-      </label>
-    </>
-  );
-};
-
-interface ArtistFormProps extends BoxProps {
-  artists?: Artist[];
-  artistsIsLoading: boolean;
-  inputArtistData: Omit<Artist, "id" | "number_of_songs">;
-  setInputArtistData: React.Dispatch<
-    React.SetStateAction<{
-      name: string;
-      image_url: string;
-    }>
-  >;
-}
-
-const ArtistForm = ({
-  artists,
-  artistsIsLoading,
-  inputArtistData,
-  setInputArtistData,
-}: ArtistFormProps) => {
-  const artistName = artists?.map((e) => e.name);
-  const artistFiltered = artists?.filter((e) => e.name === inputArtistData.name);
-
-  const handleUploadFileToFirebase = async (file: File) => {
-    const url = await uploadFile({ file, imageArtistOrSong: "artist" });
-    if (url) setInputArtistData({ ...inputArtistData, image_url: url });
-  };
-
-  return (
-    <Box display={"block"}>
-      <FormLabel>
-        <Text fontWeight={"medium"} isTruncated>
-          Artist name
-        </Text>
-      </FormLabel>
-      <InputAutoComplete
-        listRecommended={artistName}
-        isLoading={artistsIsLoading}
-        inputData={inputArtistData}
-        setInputData={setInputArtistData}
-      />
-      {artistFiltered?.length ? (
-        <Image src={artistFiltered[0]?.image_url} />
-      ) : (
-        <InputFile
-          labelName="Artist photo"
-          buttonName="Add Photo"
-          onChange={handleUploadFileToFirebase}
-        />
-      )}
-    </Box>
-  );
-};
 const SongForm = () => {
   return (
     <>

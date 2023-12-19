@@ -6,5 +6,7 @@ import Error from "./Error";
 import Loading from "./Loading";
 import Form from "./Form";
 import InputAutoComplete from "./InputAutoComplete";
+import InputFile from "./InputFile";
+import ArtistForm from "./ArtistForm";
 
-export { ArtistCard, Artists, SongCard, Songs, Error, Loading, Form, InputAutoComplete };
+export { ArtistCard, Artists, SongCard, Songs, Error, Loading, Form, InputAutoComplete, InputFile, ArtistForm };

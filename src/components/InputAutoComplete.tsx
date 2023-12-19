@@ -10,16 +10,10 @@ import {
 interface InputAutoCompleteProps extends BoxProps {
   listRecommended?: string[];
   isLoading: boolean;
-  inputData: any;
-  setInputData: React.Dispatch<
-    React.SetStateAction<any>
-  >;
+  handleChange: (e: string)=>void;
 }
 
-const InputAutoComplete = ({ listRecommended, isLoading, inputData, setInputData }: InputAutoCompleteProps) => {
-  const handleChange = (e: any) => {
-    setInputData({...inputData, name: e })
-  }
+const InputAutoComplete = ({ listRecommended, isLoading, handleChange }: InputAutoCompleteProps) => {
   return (
     <Box border={"1px"} borderColor={useColorModeValue("gray.200", "gray.500")} borderRadius={5}>
       <AutoComplete rollNavigation onChange={handleChange} isLoading={isLoading} creatable>
