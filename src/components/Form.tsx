@@ -32,6 +32,8 @@ const FormTabs = (): JSX.Element => {
   console.log("qwerty: ", data);
 
   const onNext = () => {
+    if(!inputArtistData.name) return 
+    if(!inputArtistData.image_url) return 
     console.log(inputArtistData);
     createArtist({ name: inputArtistData.name, image_url: inputArtistData.image_url });
     setIndex(index + 1);

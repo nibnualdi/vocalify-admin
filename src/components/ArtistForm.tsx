@@ -26,7 +26,7 @@ const ArtistForm = ({
 
   const handleChange = (e: string) => {
     const artistFiltered: any = artists?.filter((element) => element.name === e);
-    setInputArtistData({ name: e, image_url: artistFiltered?.[0].image_url });
+    setInputArtistData({ name: e, image_url: artistFiltered?.[0]?.image_url });
   };
 
   const handleUploadFileToFirebase = async (file: File) => {
@@ -42,8 +42,10 @@ const ArtistForm = ({
         </Text>
       </FormLabel>
       <InputAutoComplete
+        name="Artist"
         listRecommended={artistName}
         isLoading={artistsIsLoading}
+        isRequired
         handleChange={handleChange}
       />
       <InputFile

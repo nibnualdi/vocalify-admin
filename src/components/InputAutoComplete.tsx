@@ -1,4 +1,4 @@
-import { Box, BoxProps, useColorModeValue } from "@chakra-ui/react";
+import { Box, BoxProps, Collapse, Text, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import {
   AutoComplete,
   AutoCompleteCreatable,
@@ -6,33 +6,72 @@ import {
   AutoCompleteItem,
   AutoCompleteList,
 } from "@choc-ui/chakra-autocomplete";
+import { useState } from "react";
 
 interface InputAutoCompleteProps extends BoxProps {
+  name: string;
   listRecommended?: string[];
   isLoading: boolean;
-  handleChange: (e: string)=>void;
+  isRequired?: boolean;
+  handleChange: (e: string) => void;
 }
 
-const InputAutoComplete = ({ listRecommended, isLoading, handleChange }: InputAutoCompleteProps) => {
+const InputAutoComplete = ({
+  name,
+  listRecommended,
+  isLoading,
+  isRequired,
+  handleChange,
+}: InputAutoCompleteProps) => {
+  const [value, setValue] = useState("");
+  const [errMessage, setErrMessage] = useState("");
+
+  const { isOpen, onOpen } = useDisclosure();
+
+  const handleOnChange = (e: string) => {
+    setValue(e);
+    handleChange(e);
+  };
+  const handleOnBlur = () => {
+    if (value) return;
+    setErrMessage(`${name} is required`);
+    onOpen();
+  };
+
   return (
-    <Box border={"1px"} borderColor={useColorModeValue("gray.200", "gray.500")} borderRadius={5}>
-      <AutoComplete rollNavigation onChange={handleChange} isLoading={isLoading} creatable>
-        <AutoCompleteInput variant="filled" placeholder="Search basic..." autoFocus />
-        <AutoCompleteList>
-          {listRecommended?.map((option, oid) => (
-            <AutoCompleteItem
-              key={`option-${oid}`}
-              value={option}
-              label={option}
-              textTransform="capitalize"
-            >
-              {option}
-            </AutoCompleteItem>
-          ))}
-          <AutoCompleteCreatable />
-        </AutoCompleteList>
-      </AutoComplete>
-    </Box>
+    <>
+      <Box border={"1px"} borderColor={useColorModeValue("gray.200", "gray.500")} borderRadius={5}>
+        <AutoComplete
+          rollNavigation
+          onChange={handleOnChange}
+          isLoading={isLoading}
+          creatable
+          value={value}
+        >
+          <AutoCompleteInput variant="filled" placeholder={name} autoFocus onBlur={handleOnBlur} />
+          <AutoCompleteList>
+            {listRecommended?.map((option, oid) => (
+              <AutoCompleteItem
+                key={`option-${oid}`}
+                value={option}
+                label={option}
+                textTransform="capitalize"
+              >
+                {option}
+              </AutoCompleteItem>
+            ))}
+            <AutoCompleteCreatable />
+          </AutoCompleteList>
+        </AutoComplete>
+      </Box>
+      {isRequired && (
+        <Collapse in={isOpen} animateOpacity>
+          <Text fontSize="xs" color="tomato" marginLeft={2}>
+            {errMessage}
+          </Text>
+        </Collapse>
+      )}
+    </>
   );
 };
 
