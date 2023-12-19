@@ -26,11 +26,15 @@ const InputAutoComplete = ({
   const [value, setValue] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
-  const { isOpen, onOpen } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleOnChange = (e: string) => {
     setValue(e);
     handleChange(e);
+
+    if (!e) return;
+    setErrMessage("");
+    onClose();
   };
   const handleOnBlur = () => {
     if (value) return;
