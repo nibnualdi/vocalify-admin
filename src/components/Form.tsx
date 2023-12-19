@@ -3,10 +3,6 @@ import {
   ButtonGroup,
   Button,
   Flex,
-  FormLabel,
-  Input,
-  Select,
-  Textarea,
   Tabs,
   TabList,
   TabPanels,
@@ -19,41 +15,8 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import { ArtistForm } from ".";
+import { ArtistForm, SongForm } from ".";
 import { useCreateArtistsMutation, useGetArtistsQuery } from "../redux/services/song";
-
-const SongForm = () => {
-  return (
-    <>
-      <FormLabel>
-        <Text fontWeight={"medium"} isTruncated>
-          Song name
-        </Text>
-      </FormLabel>
-      <Input placeholder="title" />
-      <Flex>
-        {/* <InputFile labelName="Song file" buttonName="Add Song" />
-        <InputFile labelName="Song image" buttonName="Add Image" /> */}
-      </Flex>
-      <FormLabel>
-        <Text fontWeight={"medium"} isTruncated>
-          Lyric
-        </Text>
-      </FormLabel>
-      <Textarea placeholder="lyric" />
-      <FormLabel>
-        <Text fontWeight={"medium"} isTruncated>
-          Genre
-        </Text>
-      </FormLabel>
-      <Select variant="outline">
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-      </Select>
-    </>
-  );
-};
 
 const FormTabs = (): JSX.Element => {
   const [index, setIndex] = useState(0);

@@ -8,5 +8,6 @@ import Form from "./Form";
 import InputAutoComplete from "./InputAutoComplete";
 import InputFile from "./InputFile";
 import ArtistForm from "./ArtistForm";
+import SongForm from "./SongForm";
 
-export { ArtistCard, Artists, SongCard, Songs, Error, Loading, Form, InputAutoComplete, InputFile, ArtistForm };
+export { ArtistCard, Artists, SongCard, Songs, Error, Loading, Form, InputAutoComplete, InputFile, ArtistForm, SongForm };
