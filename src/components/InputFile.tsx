@@ -4,11 +4,10 @@ interface InputFileProps {
   labelName: string;
   buttonName: string;
   imageURL?: string;
-  key?: string;
-  onChange: ({ key, file }: { key: string; file: File }) => Promise<void>;
+  onChange: (file: File) => Promise<void>;
 }
 
-const InputFile = ({ labelName, buttonName, imageURL, key, onChange }: InputFileProps) => {
+const InputFile = ({ labelName, buttonName, imageURL, onChange }: InputFileProps) => {
   return (
     <>
       <FormLabel>
@@ -30,7 +29,8 @@ const InputFile = ({ labelName, buttonName, imageURL, key, onChange }: InputFile
           opacity={0}
           id="photo"
           onChange={(e) => {
-            e.target.files && onChange({ key: key ? key : labelName, file: e.target.files[0] });
+            e.target.files &&
+              onChange(e.target.files[0]);
           }}
         />
       </label>
