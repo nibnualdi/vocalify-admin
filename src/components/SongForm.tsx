@@ -26,6 +26,12 @@ const SongForm = ({ inputSongsData, setInputSongsData, ...props }: SongFormProps
     if (url) setInputSongsData({ ...inputSongsData, image_url: url });
   };
 
+  const handleSelect = (e: any) => {
+    const value = e.target.value;
+    if (value === "default") return;
+    setInputSongsData({ ...inputSongsData, genre: value });
+  };
+
   return (
     <Box {...props}>
       <InputText isRequired name="Title" handleChange={handleChange} />
@@ -43,20 +49,16 @@ const SongForm = ({ inputSongsData, setInputSongsData, ...props }: SongFormProps
           onChange={handleUploadImageToFirebase}
         />
       </Flex>
-      <FormLabel>
-        <Text fontWeight={"medium"} isTruncated>
-          Lyric
-        </Text>
-      </FormLabel>
-      <Textarea placeholder="lyric" />
+      <InputText name="Lyric" type="textarea" handleChange={handleChange} />
       <FormLabel>
         <Text fontWeight={"medium"} isTruncated>
           Genre
         </Text>
       </FormLabel>
-      <Select variant="outline">
+      <Select variant="outline" onChange={handleSelect}>
+        <option value="default">select</option>
         {data?.map((e: any) => (
-          <option value="option1" key={e.id}>
+          <option value={e.genre_name} key={e.id}>
             {e.genre_name}
           </option>
         ))}

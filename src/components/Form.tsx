@@ -50,6 +50,17 @@ const FormTabs = (): JSX.Element => {
     setIndex(index + 1);
   };
 
+  const onSubmit = () => {
+    console.log(inputArtistData, inputSongsData);
+    toast({
+      title: "Account created.",
+      description: "We've created your account for you.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
+
   return (
     <Box
       px={{ base: 2, md: 4 }}
@@ -117,15 +128,7 @@ const FormTabs = (): JSX.Element => {
                 borderColor={useColorModeValue("gray.800", "gray.500")}
                 variant="outline"
                 flex={1}
-                onClick={() => {
-                  toast({
-                    title: "Account created.",
-                    description: "We've created your account for you.",
-                    status: "success",
-                    duration: 3000,
-                    isClosable: true,
-                  });
-                }}
+                onClick={onSubmit}
               >
                 Submit
               </Button>

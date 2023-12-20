@@ -1,14 +1,30 @@
-import { Collapse, FormLabel, Input, InputProps, Text, useDisclosure } from "@chakra-ui/react";
+import {
+  Collapse,
+  FormLabel,
+  Input,
+  InputProps,
+  Text,
+  Textarea,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { useState } from "react";
 
 interface InputTextProps extends InputProps {
   name: string;
   noLabel?: boolean;
+  type?: "text" | "textarea";
   isRequired?: boolean;
   handleChange?: ({ key, value }: { key: string; value: string }) => void;
 }
 
-const InputText = ({ name, noLabel, isRequired, handleChange, ...props }: InputTextProps) => {
+const InputText = ({
+  name,
+  noLabel,
+  type = "text",
+  isRequired,
+  handleChange,
+  ...props
+}: InputTextProps) => {
   const [value, setValue] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
@@ -42,12 +58,20 @@ const InputText = ({ name, noLabel, isRequired, handleChange, ...props }: InputT
           </Text>
         </FormLabel>
       )}
-      <Input
-        placeholder={name.toLocaleLowerCase()}
-        {...props}
-        onChange={handleOnChange}
-        onBlur={handleOnBlur}
-      />
+      {type === "text" ? (
+        <Input
+          placeholder={name.toLocaleLowerCase()}
+          onChange={handleOnChange}
+          onBlur={handleOnBlur}
+          {...props}
+        />
+      ) : (
+        <Textarea
+          placeholder={name.toLocaleLowerCase()}
+          onChange={handleOnChange}
+          onBlur={handleOnBlur}
+        />
+      )}
       {isRequired && (
         <Collapse in={isOpen} animateOpacity>
           <Text fontSize="xs" color="tomato" marginLeft={2}>
