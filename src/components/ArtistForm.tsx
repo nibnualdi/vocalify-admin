@@ -30,7 +30,7 @@ const ArtistForm = ({
   };
 
   const handleUploadFileToFirebase = async ({ file }: { file: File }) => {
-    const url = await uploadFile({ file, IsArtistOrSong: "artistImage" });
+    const url = await uploadFile({ file, IsArtistOrSong: "artist image" });
     if (url) setInputArtistData({ ...inputArtistData, image_url: url });
   };
 

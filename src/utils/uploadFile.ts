@@ -5,16 +5,16 @@ const storage = getStorage(app);
 
 interface uploadFileProps {
   file: File;
-  IsArtistOrSong: "artistImage" | "songImage" | "songFile";
+  IsArtistOrSong: "artist image" | "song image" | "songFile";
 }
 
 // 'file' comes from the Blob or File API
 export const uploadFile = async ({ file, IsArtistOrSong }: uploadFileProps) => {
   const storageRef = ref(
     storage,
-    IsArtistOrSong === "artistImage"
+    IsArtistOrSong === "artist image"
       ? `images/artists/${file.name}`
-      : IsArtistOrSong === "songImage"
+      : IsArtistOrSong === "song image"
       ? `images/songs/${file.name}`
       : `songs/${file.name}`
   );
