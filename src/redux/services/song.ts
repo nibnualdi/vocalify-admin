@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Artist, Song } from "../../types";
+import { Artist, Genre, Song } from "../../types";
 
 export const songsApi = createApi({
   baseQuery: fetchBaseQuery({
@@ -34,6 +34,12 @@ export const songsApi = createApi({
         return rawResult.songs;
       },
     }),
+    getGenres: build.query<Genre[], void>({
+      query: () => `genres`,
+      transformResponse: (rawResult: { genre: Genre[] }) => {
+        return rawResult.genre;
+      },
+    }),
     createArtists: build.mutation<Artist[], Partial<Artist>>({
       query: ({ name, image_url }) => ({
         url: `create/artist`,
@@ -52,5 +58,6 @@ export const {
   useGetArtistsQuery,
   useGetArtistByIdQuery,
   useGetSongsByArtistNameQuery,
+  useGetGenresQuery,
   useCreateArtistsMutation,
 } = songsApi;

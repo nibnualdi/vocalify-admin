@@ -1,6 +1,9 @@
 import { Flex, FormLabel, Input, Select, Textarea, Text } from "@chakra-ui/react";
+import { useGetGenresQuery } from "../redux/services/song";
 
 const SongForm = () => {
+  const { data } = useGetGenresQuery();
+  console.log("data: ", data);
   return (
     <>
       <FormLabel>
@@ -25,9 +28,11 @@ const SongForm = () => {
         </Text>
       </FormLabel>
       <Select variant="outline">
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+        {data?.map((e) => (
+          <option value="option1" key={e.id}>
+            {e.genre_name}
+          </option>
+        ))}
       </Select>
     </>
   );

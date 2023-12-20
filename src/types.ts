@@ -3,7 +3,7 @@ export type Artist = {
   image_url: string;
   name: string;
   number_of_songs: number;
-}
+};
 
 export type Song = {
   artist_name: string;
@@ -15,4 +15,9 @@ export type Song = {
   lyric?: any;
   song_url: string;
   title: string;
-}
+};
+
+export type Genre = {
+  id: string;
+  genre_name: string;
+};
