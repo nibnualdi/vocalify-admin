@@ -29,7 +29,6 @@ const FormTabs = (): JSX.Element => {
 
   const { data: artists, isLoading: artistsIsLoading } = useGetArtistsQuery();
   const [createArtist, { data }] = useCreateArtistsMutation();
-  console.log("qwerty: ", data);
 
   const onNext = () => {
     if (!inputArtistData.name) return;

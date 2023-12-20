@@ -8,7 +8,7 @@ interface InputFileProps {
 }
 
 const InputFile = ({ labelName, buttonName, imageURL, onChange }: InputFileProps) => {
-  console.log("imageURL: ", imageURL);
+
   return (
     <>
       <FormLabel>

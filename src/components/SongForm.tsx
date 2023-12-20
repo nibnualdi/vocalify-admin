@@ -1,4 +1,4 @@
-import { Flex, FormLabel, Input, Select, Textarea, Text } from "@chakra-ui/react";
+import { Flex, FormLabel, Select, Textarea, Text } from "@chakra-ui/react";
 import { useGetGenresQuery } from "../redux/services/song";
 import { InputText } from ".";
 
