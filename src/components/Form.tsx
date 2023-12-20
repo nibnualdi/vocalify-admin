@@ -16,7 +16,11 @@ import {
 } from "@chakra-ui/react";
 
 import { ArtistForm, SongForm } from ".";
-import { useCreateArtistsMutation, useGetArtistsQuery } from "../redux/services/song";
+import {
+  useCreateArtistsMutation,
+  useCreateSongsMutation,
+  useGetArtistsQuery,
+} from "../redux/services/song";
 import { Song } from "../types";
 
 const FormTabs = (): JSX.Element => {
@@ -38,6 +42,7 @@ const FormTabs = (): JSX.Element => {
 
   const { data: artists, isLoading: artistsIsLoading } = useGetArtistsQuery();
   const [createArtist] = useCreateArtistsMutation();
+  const [createSong] = useCreateSongsMutation();
 
   const onNext = () => {
     if (!inputArtistData.name) return;
@@ -51,7 +56,20 @@ const FormTabs = (): JSX.Element => {
   };
 
   const onSubmit = () => {
-    console.log(inputArtistData, inputSongsData);
+    console.log(inputSongsData.title, inputArtistData.name, inputSongsData.song_url, inputSongsData.image_url, inputSongsData.genre)
+    if(!inputSongsData.title) return
+    if(!inputArtistData.name) return
+    if(!inputSongsData.song_url) return
+    if(!inputSongsData.image_url) return
+    if(!inputSongsData.genre) return
+    createSong({
+      title: inputSongsData.title,
+      artist_name: inputArtistData.name,
+      song_url: inputSongsData.song_url,
+      image_url: inputSongsData.image_url,
+      genre: inputSongsData.genre,
+      lyric: inputSongsData.lyric,
+    });
     toast({
       title: "Account created.",
       description: "We've created your account for you.",

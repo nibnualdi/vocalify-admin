@@ -50,6 +50,20 @@ export const songsApi = createApi({
         },
       }),
     }),
+    createSongs: build.mutation<Song[], Partial<Song>>({
+      query: ({ artist_name, genre, lyric, song_url, title, image_url }) => ({
+        url: `create/song`,
+        method: "POST",
+        body: {
+          artist_name,
+          genre,
+          lyric,
+          song_url,
+          title,
+          image_url,
+        },
+      }),
+    }),
   }),
 });
 
@@ -60,4 +74,5 @@ export const {
   useGetSongsByArtistNameQuery,
   useGetGenresQuery,
   useCreateArtistsMutation,
+  useCreateSongsMutation,
 } = songsApi;
