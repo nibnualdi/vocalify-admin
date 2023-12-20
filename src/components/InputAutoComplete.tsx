@@ -13,7 +13,7 @@ interface InputAutoCompleteProps extends BoxProps {
   listRecommended?: string[];
   isLoading: boolean;
   isRequired?: boolean;
-  handleChange: (e: string) => void;
+  handleChange?: (e: string) => void;
 }
 
 const InputAutoComplete = ({
@@ -30,9 +30,13 @@ const InputAutoComplete = ({
 
   const handleOnChange = (e: string) => {
     setValue(e);
-    handleChange(e);
+    handleChange && handleChange(e);
 
-    if (!e) return;
+    if (!e) {
+      setErrMessage(`${name} is required`);
+      onOpen();
+      return;
+    }
     setErrMessage("");
     onClose();
   };
