@@ -1,13 +1,23 @@
-import { Flex, FormLabel, Select, Textarea, Text } from "@chakra-ui/react";
+import { Flex, FormLabel, Select, Textarea, Text, Box, BoxProps } from "@chakra-ui/react";
 import { useGetGenresQuery } from "../redux/services/song";
 import { InputText } from ".";
+import { Song } from "../types";
 
-const SongForm = () => {
+interface SongFormProps extends BoxProps {
+  inputSongsData: Omit<Song, "id" | "likes" | "listened">;
+  setInputSongsData: React.Dispatch<React.SetStateAction<Omit<Song, "id" | "likes" | "listened">>>;
+}
+
+const SongForm = ({ inputSongsData, setInputSongsData, ...props }: SongFormProps) => {
   const { data } = useGetGenresQuery();
 
+  const handleChange = ({ key, value }: { key: string; value: string }) => {
+    setInputSongsData({ ...inputSongsData, [key]: value });
+  };
+
   return (
-    <>
-      <InputText isRequired name="Title" />
+    <Box {...props}>
+      <InputText isRequired name="Title" handleChange={handleChange} />
       <Flex>
         {/* <InputFile labelName="Song file" buttonName="Add Song" />
         <InputFile labelName="Song image" buttonName="Add Image" /> */}
@@ -30,7 +40,7 @@ const SongForm = () => {
           </option>
         ))}
       </Select>
-    </>
+    </Box>
   );
 };
 

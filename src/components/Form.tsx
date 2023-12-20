@@ -17,6 +17,7 @@ import {
 
 import { ArtistForm, SongForm } from ".";
 import { useCreateArtistsMutation, useGetArtistsQuery } from "../redux/services/song";
+import { Song } from "../types";
 
 const FormTabs = (): JSX.Element => {
   const [index, setIndex] = useState(0);
@@ -25,6 +26,14 @@ const FormTabs = (): JSX.Element => {
   const [inputArtistData, setInputArtistData] = useState({
     name: "",
     image_url: "",
+  });
+  const [inputSongsData, setInputSongsData] = useState<Omit<Song, "id" | "likes" | "listened">>({
+    title: "",
+    lyric: "",
+    genre: "",
+    image_url: "",
+    song_url: "",
+    artist_name: "",
   });
 
   const { data: artists, isLoading: artistsIsLoading } = useGetArtistsQuery();
@@ -76,7 +85,7 @@ const FormTabs = (): JSX.Element => {
             />
           </TabPanel>
           <TabPanel>
-            <SongForm />
+            <SongForm inputSongsData={inputSongsData} setInputSongsData={setInputSongsData} />
           </TabPanel>
         </TabPanels>
         <ButtonGroup mt="5%" w="100%">
