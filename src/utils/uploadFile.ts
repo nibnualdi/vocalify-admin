@@ -5,7 +5,7 @@ const storage = getStorage(app);
 
 interface uploadFileProps {
   file: File;
-  IsArtistOrSong: "artist image" | "song image" | "songFile";
+  IsArtistOrSong: "artist image" | "song image" | "song file";
 }
 
 // 'file' comes from the Blob or File API
