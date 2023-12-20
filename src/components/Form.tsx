@@ -28,7 +28,7 @@ const FormTabs = (): JSX.Element => {
   });
 
   const { data: artists, isLoading: artistsIsLoading } = useGetArtistsQuery();
-  const [createArtist, { data }] = useCreateArtistsMutation();
+  const [createArtist] = useCreateArtistsMutation();
 
   const onNext = () => {
     if (!inputArtistData.name) return;
