@@ -1,17 +1,13 @@
 import { Flex, FormLabel, Input, Select, Textarea, Text } from "@chakra-ui/react";
 import { useGetGenresQuery } from "../redux/services/song";
+import { InputText } from ".";
 
 const SongForm = () => {
   const { data } = useGetGenresQuery();
-  console.log("data: ", data);
+
   return (
     <>
-      <FormLabel>
-        <Text fontWeight={"medium"} isTruncated>
-          Song name
-        </Text>
-      </FormLabel>
-      <Input placeholder="title" />
+      <InputText isRequired name="Title" />
       <Flex>
         {/* <InputFile labelName="Song file" buttonName="Add Song" />
         <InputFile labelName="Song image" buttonName="Add Image" /> */}
