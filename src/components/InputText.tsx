@@ -5,7 +5,7 @@ interface InputTextProps extends InputProps {
   name: string;
   noLabel?: boolean;
   isRequired?: boolean;
-  handleChange?: (e: any) => void;
+  handleChange?: ({ key, value }: { key: string; value: string }) => void;
 }
 
 const InputText = ({ name, noLabel, isRequired, handleChange, ...props }: InputTextProps) => {
@@ -17,7 +17,7 @@ const InputText = ({ name, noLabel, isRequired, handleChange, ...props }: InputT
   const handleOnChange = (e: any) => {
     const input = e.target.value;
     setValue(input);
-    handleChange && handleChange(input);
+    handleChange && handleChange({ key: name.replace(" ", "_").toLocaleLowerCase(), value: input });
 
     if (!input) {
       setErrMessage(`${name} is required`);
