@@ -32,10 +32,13 @@ const FormTabs = (): JSX.Element => {
   console.log("qwerty: ", data);
 
   const onNext = () => {
-    if(!inputArtistData.name) return 
-    if(!inputArtistData.image_url) return 
-    console.log(inputArtistData);
-    createArtist({ name: inputArtistData.name, image_url: inputArtistData.image_url });
+    if (!inputArtistData.name) return;
+    const defNoImage =
+      "https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg";
+    createArtist({
+      name: inputArtistData.name,
+      image_url: inputArtistData.image_url || defNoImage,
+    });
     setIndex(index + 1);
   };
 
