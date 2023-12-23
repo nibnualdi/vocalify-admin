@@ -1,6 +1,6 @@
-import { Flex, FormLabel, Select, Text, Box, BoxProps } from "@chakra-ui/react";
+import { Flex, Box, BoxProps } from "@chakra-ui/react";
 import { useGetGenresQuery } from "../redux/services/song";
-import { InputFile, InputText } from ".";
+import { InputFile, InputSelect, InputText } from ".";
 import { Song } from "../types";
 import { uploadFile } from "../utils";
 import { useState } from "react";
@@ -59,19 +59,7 @@ const SongForm = ({ inputSongsData, setInputSongsData, ...props }: SongFormProps
         />
       </Flex>
       <InputText name="Lyric" type="textarea" handleChange={handleChange} />
-      <FormLabel>
-        <Text fontWeight={"medium"} isTruncated>
-          Genre
-        </Text>
-      </FormLabel>
-      <Select variant="outline" onChange={handleSelect}>
-        <option value="default">select</option>
-        {data?.map((e: any) => (
-          <option value={e.genre_name} key={e.id}>
-            {e.genre_name}
-          </option>
-        ))}
-      </Select>
+      <InputSelect name="Genre" data={data || []} handleChange={handleSelect} isRequired />
     </Box>
   );
 };

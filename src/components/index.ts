@@ -10,5 +10,20 @@ import InputFile from "./InputFile";
 import ArtistForm from "./ArtistForm";
 import SongForm from "./SongForm";
 import InputText from "./InputText";
+import InputSelect from "./InputSelect";
 
-export { ArtistCard, Artists, SongCard, Songs, Error, Loading, Form, InputAutoComplete, InputFile, ArtistForm, SongForm, InputText };
+export {
+  ArtistCard,
+  Artists,
+  SongCard,
+  Songs,
+  Error,
+  Loading,
+  Form,
+  InputAutoComplete,
+  InputFile,
+  ArtistForm,
+  SongForm,
+  InputText,
+  InputSelect,
+};
