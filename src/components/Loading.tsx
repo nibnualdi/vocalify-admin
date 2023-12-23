@@ -1,9 +1,13 @@
 import { Box, BoxProps, Spinner } from "@chakra-ui/react";
 
-const Loading = (props: BoxProps) => {
+interface LoadingProps extends BoxProps {
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+}
+
+const Loading = ({ size = "xl", ...props }: LoadingProps) => {
   return (
     <Box textAlign="center" py={10} px={6} {...props}>
-      <Spinner margin="auto" size="xl" />
+      <Spinner margin="auto" size={size} />
     </Box>
   );
 };
