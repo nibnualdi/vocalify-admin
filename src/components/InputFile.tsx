@@ -1,13 +1,15 @@
 import { Button, FormLabel, Image, Input, Text } from "@chakra-ui/react";
+import { Loading } from ".";
 
 interface InputFileProps {
   labelName: string;
   buttonName: string;
   imageURL?: string;
+  isLoading?: boolean;
   onChange: (file: File) => Promise<void>;
 }
 
-const InputFile = ({ labelName, buttonName, imageURL, onChange }: InputFileProps) => {
+const InputFile = ({ labelName, buttonName, imageURL, isLoading, onChange }: InputFileProps) => {
   return (
     <>
       <FormLabel>
@@ -20,7 +22,7 @@ const InputFile = ({ labelName, buttonName, imageURL, onChange }: InputFileProps
           <Image src={imageURL} />
         ) : (
           <Button variant="outline" colorScheme="yellow" position={"absolute"}>
-            {buttonName}
+            {isLoading ? <Loading size="xs" /> : buttonName}
           </Button>
         )}
         <Input
@@ -29,8 +31,7 @@ const InputFile = ({ labelName, buttonName, imageURL, onChange }: InputFileProps
           opacity={0}
           id="photo"
           onChange={(e) => {
-            e.target.files &&
-              onChange(e.target.files[0]);
+            e.target.files && onChange(e.target.files[0]);
           }}
         />
       </label>

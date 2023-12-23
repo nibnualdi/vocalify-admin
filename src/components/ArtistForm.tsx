@@ -3,6 +3,7 @@ import { FormLabel, Box, Text, BoxProps } from "@chakra-ui/react";
 import { InputAutoComplete, InputFile } from ".";
 import { uploadFile } from "../utils";
 import { Artist } from "../types";
+import { useState } from "react";
 
 interface ArtistFormProps extends BoxProps {
   artists?: Artist[];
@@ -22,6 +23,7 @@ const ArtistForm = ({
   inputArtistData,
   setInputArtistData,
 }: ArtistFormProps) => {
+  const [isLoadingImageUpload, setIsLoadingImageUpload] = useState(false);
   const artistName = artists?.map((e) => e.name);
 
   const handleChange = (e: string) => {
@@ -30,7 +32,9 @@ const ArtistForm = ({
   };
 
   const handleUploadFileToFirebase = async (file: File) => {
+    setIsLoadingImageUpload(true);
     const url = await uploadFile({ file, IsArtistOrSong: "artist image" });
+    setIsLoadingImageUpload(false);
     if (url) setInputArtistData({ ...inputArtistData, image_url: url });
   };
 
@@ -52,6 +56,7 @@ const ArtistForm = ({
         labelName="Artist photo"
         buttonName="Add Photo"
         imageURL={inputArtistData.image_url}
+        isLoading={isLoadingImageUpload}
         onChange={handleUploadFileToFirebase}
       />
     </Box>
