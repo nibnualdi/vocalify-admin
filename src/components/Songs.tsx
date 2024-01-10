@@ -1,6 +1,7 @@
-import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import { Error, SongCard, Loading } from ".";
 import { useGetSongsQuery } from "../redux/services/song";
+import { Link } from "react-router-dom";
 
 const Songs = () => {
   const { data, isLoading, isError } = useGetSongsQuery();
@@ -16,9 +17,14 @@ const Songs = () => {
       borderColor={useColorModeValue("gray.800", "gray.500")}
       rounded={"lg"}
     >
-      <Text fontWeight={"medium"} isTruncated>
-        Songs
-      </Text>
+      <Flex justifyContent={"space-between"} alignItems={"center"}>
+        <Text fontWeight={"medium"} isTruncated>
+          Songs
+        </Text>
+        <Button color="blue.500">
+          <Link to={"/songs/new"}>Add New</Link>
+        </Button>
+      </Flex>
       {isLoading ? (
         <Loading />
       ) : (
